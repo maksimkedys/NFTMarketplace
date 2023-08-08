@@ -1,4 +1,4 @@
-# NFTMarketplace Landing Pege
+# NFTMarketplace Landing Page
 
 HTML, SCSS, GULP, JS, JQuery
 
