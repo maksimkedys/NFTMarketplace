@@ -1,0 +1,71 @@
+.art-card {
+  padding: 20px;
+  border-radius: 28px;
+  border-top: 1px solid $accent;
+  background-color: $dark;
+
+  &__img {
+    margin-bottom: 20px;
+    border-radius: 18px;
+  }
+
+  &__top {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    font-weight: 700;
+  }
+
+  &__title {
+    font-size: 24px;
+    @include r($sm) {
+      font-size: 18px;
+    }
+  }
+
+  &__price {
+    padding-left: 28px;
+    background-image: url("../images/ethereum.svg");
+    background-repeat: no-repeat;
+    background-size: 24px 25px;
+    background-position: left center;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+
+    @include r($sm) {
+      display: block;
+    }
+  }
+
+  &__box {
+    @include r($sm) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__text {
+    margin-bottom: 4px;
+    font-size: 14px;
+    color: $lite-disabled;
+  }
+
+  &__time {
+    padding-left: 36px;
+    background-image: url("../images/clock.svg");
+    background-repeat: no-repeat;
+    background-size: 24px 25px;
+    background-position: left center;
+    font-weight: 700;
+  }
+
+  &__btn {
+    @include r($sm) {
+      width: 100%;
+    }
+  }
+}

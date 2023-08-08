@@ -1,0 +1,117 @@
+.contact-popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 0 15px;
+  @media (max-width: 992px) and (orientation: landscape) {
+    overflow: scroll;
+    align-items: flex-start;
+  }
+
+  &__inner {
+    max-width: 540px;
+    width: 100%;
+    padding: 20px;
+    background-color: $dark;
+    border-radius: 20px;
+    border-top: 2px solid $accent;
+
+    @include r($sm) {
+      padding: 10px;
+    }
+  }
+
+  &__close {
+    margin-left: auto;
+    width: 44px;
+    height: 44px;
+    position: relative;
+    display: block;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    transition-property: border-color, opacity;
+    transition-duration: 0.4s;
+
+    &:focus {
+      border-color: rgba($accent, 0.7);
+    }
+
+    &:hover {
+      .contact-popup__icon {
+        fill: $accent;
+      }
+    }
+    &:active {
+      opacity: 0.7;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: $lite;
+    transition-property: fill;
+    transition-duration: 0.4s;
+  }
+
+  &__label {
+    display: block;
+    font-weight: 700;
+    color: $lite;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+      @include r($sm) {
+        margin-bottom: 10px;
+      }
+    }
+
+    span {
+      color: $accent;
+      display: inline;
+    }
+  }
+
+  &__input,
+  &__textarea {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px 24px;
+    background-color: #131e3a;
+    color: $lite;
+    font-weight: 400;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition-property: border-color, transform;
+    transition-duration: 0.4s;
+
+    &:focus {
+      border-color: $accent;
+    }
+
+    &:hover {
+      transform: scale(1.01);
+    }
+  }
+
+  &__textarea {
+    margin-bottom: 30px;
+    min-height: 115px;
+    max-height: 215px;
+    resize: vertical;
+    @include r($sm) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,36 @@
+<section class="arts section">
+  <div class="container">
+    <div class="arts__top">
+      <h2 class="arts__title title">
+        <span>Amazing</span> and Super Unique Art of This <span>Week</span>
+      </h2>
+      <a class="btn" href="#">See All</a>
+    </div>
+    <ul class="arts__list">
+      <li class="arts__item">
+        @include('_art-card.html', {
+        img: '../images/arts/1.jpg',
+        title: 'Cyberpunk Cocomo',
+        price: '490ETH',
+        endDate: '2023-08-15'
+        })
+      </li>
+      <li class="arts__item">
+        @include('_art-card.html', {
+        img: '../images/arts/2.jpg',
+        title: 'Charge, Qi tiao yu',
+        price: '490ETH',
+        endDate: '2023-08-15'
+        })
+      </li>
+      <li class="arts__item">
+        @include('_art-card.html', {
+        img: '../images/arts/3.jpg',
+        title: 'Surgeon, Josh Rife',
+        price: '490ETH',
+        endDate: '2023-08-15'
+        })
+      </li>
+    </ul>
+  </div>
+</section>

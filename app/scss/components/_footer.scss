@@ -1,0 +1,160 @@
+.footer {
+  &__top {
+    padding: 92px 0 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $lite-disabled;
+    @include r($lg) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    @include r($sm) {
+      padding-top: 50px;
+    }
+  }
+
+  &__content {
+    max-width: 273px;
+    width: 100%;
+    @include r($lg) {
+      order: 2;
+    }
+  }
+
+  &__text {
+    margin-bottom: 25px;
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__social-link {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-color: $lite;
+    border-radius: 3px;
+    border: 2px solid transparent;
+    transition-property: border-color, background-color, opacity;
+    transition-duration: 0.4s;
+    &:focus {
+      border-color: $accent;
+    }
+    &:hover {
+      background-color: $accent;
+    }
+    &:active {
+      opacity: 0.7;
+    }
+    &::before {
+      content: "";
+      width: 35px;
+      height: 44px;
+      position: absolute;
+      top: -12px;
+      left: -6px;
+    }
+  }
+  &__social-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: $dark;
+  }
+
+  &__items {
+    display: flex;
+    gap: 90px;
+    @include r($xl) {
+      gap: 60px;
+    }
+    @include r($lg) {
+      gap: 50px 90px;
+      margin: 0 auto 50px;
+      flex-wrap: wrap;
+    }
+    @include r($md) {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__item {
+    &:not(:last-child) {
+      @include r($md) {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  &__title {
+    position: relative;
+    margin-bottom: 18px;
+    font-size: 20px;
+    font-weight: 700;
+    @include r($md) {
+      display: block;
+      font-size: 25px;
+    }
+
+    &::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transform: translateY(-50%) rotate(90deg);
+      transition: transform 0.4s;
+
+      @include r($md) {
+        background-image: url("../images/icon-chevron.svg");
+      }
+    }
+    &--active {
+      &::before {
+        transform: translateY(-50%) rotate(270deg);
+      }
+    }
+  }
+
+  &__list {
+    @include r($md) {
+      display: none;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 6px 0;
+    @include r($md) {
+      font-size: 18px;
+    }
+  }
+
+  &__bottom {
+    padding: 50px 0 100px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    @include r($sm) {
+      flex-direction: column;
+      padding: 50px 0;
+    }
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+}

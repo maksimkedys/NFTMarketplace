@@ -1,0 +1,181 @@
+@import "mixins";
+@import url("https://fonts.cdnfonts.com/css/canela-text-trial");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: $lite;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.container {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.title {
+  font-family: "Canela", sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: capitalize;
+
+  @include r($md) {
+    font-size: 35px;
+  }
+
+  span {
+    color: $accent;
+  }
+}
+
+.section {
+  padding: 92px 0;
+
+  @include r($sm) {
+    padding: 50px 0;
+  }
+}
+
+.logo {
+  border-radius: 5px;
+  outline: 2px solid transparent;
+  z-index: 6;
+  transition:
+    outline-color 0.4s,
+    opacity 0.4s;
+
+  &:focus {
+    outline-color: $accent;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+  &__img {
+    object-fit: contain;
+  }
+}
+
+.link {
+  border-radius: 5px;
+  border: 2px solid transparent;
+  color: $lite;
+  transition:
+    color 0.4s,
+    border-color 0.4s,
+    text-shadow 0.4s,
+    opacity 0.4s;
+
+  &:focus {
+    border-color: rgba($accent, 0.7);
+  }
+
+  &:hover {
+    color: $accent;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.btn {
+  padding: 12px 40px;
+  font-weight: 700;
+  border-radius: 8px;
+  background-color: $accent;
+  border: 2px solid transparent;
+  color: $dark;
+  white-space: nowrap;
+  text-transform: capitalize;
+  transition-property: border-color, color, background-color, opacity;
+  transition-duration: 0.6s;
+
+  &:focus {
+    border-color: $lite;
+  }
+  &:hover {
+    color: $accent;
+    border-color: $accent;
+    background-color: transparent;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+
+  &--outline {
+    color: $accent;
+    border-color: $accent;
+    background-color: transparent;
+
+    &:hover {
+      color: $dark;
+      border-color: transparent;
+      background-color: $accent;
+    }
+  }
+}
+
+.more {
+  padding: 12px 5px;
+  color: $lite;
+  font-weight: 700;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  color: $lite;
+  transition:
+    color 0.4s,
+    border-color 0.4s,
+    text-shadow 0.4s,
+    opacity 0.4s;
+
+  &:focus {
+    border-color: rgba($accent, 0.7);
+  }
+
+  &:hover {
+    color: $accent;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}

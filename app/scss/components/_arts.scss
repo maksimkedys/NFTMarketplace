@@ -1,0 +1,30 @@
+.arts {
+  &__top {
+    margin-bottom: 64px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 25px;
+    @include r($sm) {
+      flex-direction: column;
+    }
+  }
+
+  &__title {
+    max-width: 506px;
+    width: 100%;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+
+    @include r($xl) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include r(850) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
