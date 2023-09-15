@@ -1,28 +1,27 @@
 $(function () {
-
   // Fixed Header
 
-  $(window).on('scroll', function () {
-    $('.header').toggleClass('header--scrolled', $(window).scrollTop() > 0);
+  $(window).on("scroll", function () {
+    $(".header").toggleClass("header--scrolled", $(window).scrollTop() > 0);
   });
-
 
   // Accordion Menu
 
   $(window).on("resize load", function () {
     if ($(window).width() < 769) {
-      $(".footer__title").off('click').on('click', function () {
-        $(this).next().slideToggle();
-        $(this).toggleClass('footer__title--active');
-      });
+      $(".footer__title")
+        .off("click")
+        .on("click", function () {
+          $(this).next().slideToggle();
+          $(this).toggleClass("footer__title--active");
+        });
     } else {
-      $(".footer__title").off('click');
+      $(".footer__title").off("click");
       $(".footer__list").removeAttr("style");
     }
   });
 
-
-  // Timer NFT 
+  // Timer NFT
 
   const timer = ({ hours, minutes, seconds, expire }) => {
     function getTimeRemaining(endtime) {
@@ -33,7 +32,7 @@ $(function () {
       const days = Math.floor(total / (1000 * 60 * 60 * 24));
 
       if (days) {
-        hours = hours + (24 * days);
+        hours = hours + 24 * days;
       }
 
       return {
@@ -41,7 +40,7 @@ $(function () {
         days,
         hours,
         minutes,
-        seconds
+        seconds,
       };
     }
 
@@ -53,9 +52,9 @@ $(function () {
       function updateDisplay() {
         const t = getTimeRemaining(endtime);
 
-        hoursSpan.innerHTML = t.hours < 10 ? '0' + t.hours : t.hours;
-        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+        hoursSpan.innerHTML = t.hours < 10 ? "0" + t.hours : t.hours;
+        minutesSpan.innerHTML = ("0" + t.minutes).slice(-2);
+        secondsSpan.innerHTML = ("0" + t.seconds).slice(-2);
 
         if (t.total <= 0) {
           clearInterval(timeinterval);
@@ -67,84 +66,35 @@ $(function () {
     }
 
     const clocks = document.querySelectorAll(expire);
-    clocks.forEach(clock => {
-      const deadline = clock.getAttribute('data-time');
+    clocks.forEach((clock) => {
+      const deadline = clock.getAttribute("data-time");
       updateClock(clock, deadline);
     });
   };
 
-
   timer({
-    hours: '.hero__holder-hours',
-    minutes: '.hero__holder-minutes',
-    seconds: '.hero__holder-seconds',
-    expire: '.hero__holder-time'
+    hours: ".hero__holder-hours",
+    minutes: ".hero__holder-minutes",
+    seconds: ".hero__holder-seconds",
+    expire: ".hero__holder-time",
   });
   timer({
-    hours: '.art-card__hours',
-    minutes: '.art-card__minutes',
-    seconds: '.art-card__seconds',
-    expire: '.art-card__time'
+    hours: ".art-card__hours",
+    minutes: ".art-card__minutes",
+    seconds: ".art-card__seconds",
+    expire: ".art-card__time",
   });
-
-
-  // Animation Responsive
-
-  $(window).on("resize load", function () {
-    if ($(window).width() < 1200) {
-      gsap.from('.subscribe__title, .subscribe__text', {
-        scrollTrigger: {
-          trigger: '.subscribe',
-          start: 'top center',
-        },
-        x: -100,
-        opacity: 0,
-        duration: 1
-      });
-      gsap.from(".create__images", {
-        scrollTrigger: {
-          trigger: '.create',
-          start: 'top center',
-        },
-        x: -100,
-        opacity: 0,
-        duration: 1
-      })
-    } else {
-      gsap.from('.subscribe__title, .subscribe__text', {
-        scrollTrigger: {
-          trigger: '.subscribe',
-          start: 'top center',
-        },
-        x: 100,
-        opacity: 0,
-        duration: 1
-      });
-      gsap.from(".create__images", {
-        scrollTrigger: {
-          trigger: '.create',
-          start: 'top center',
-        },
-        x: 100,
-        opacity: 0,
-        duration: 1
-      })
-    }
-  });
-
 });
 
+// Burger Menu
 
-// Burger Menu 
+const burger = document.querySelector(".burger");
+const menu = document.querySelector(".menu__list");
 
-const burger = document.querySelector('.burger');
-const menu = document.querySelector('.menu__list');
-
-burger.addEventListener('click', function () {
+burger.addEventListener("click", function () {
   burger.classList.toggle("burger--active");
   menu.classList.toggle("menu__list--active");
 });
-
 
 // Modal Contacts
 
@@ -161,14 +111,14 @@ const scrollController = {
       width: 100vw;
       padding-right: ${window.innerWidth - document.body.offsetWidth}px
     `;
-    document.documentElement.style.scrollBehavior = 'unset';
+    document.documentElement.style.scrollBehavior = "unset";
   },
   enabledScroll() {
-    document.body.style.cssText = '';
-    window.scroll({ top: scrollController.scrollPosition })
-    document.documentElement.style.scrollBehavior = '';
+    document.body.style.cssText = "";
+    window.scroll({ top: scrollController.scrollPosition });
+    document.documentElement.style.scrollBehavior = "";
   },
-}
+};
 
 const modalController = ({ modal, btnOpen, btnClose, time = 400 }) => {
   const buttonElems = document.querySelectorAll(btnOpen);
@@ -181,263 +131,311 @@ const modalController = ({ modal, btnOpen, btnClose, time = 400 }) => {
     transition: opacity ${time}ms ease-in-out;
   `;
 
-  const closeModal = event => {
+  const closeModal = (event) => {
     const target = event.target;
 
     if (
       target === modalElem ||
       (btnClose && target.closest(btnClose)) ||
-      event.code === 'Escape'
+      event.code === "Escape"
     ) {
-
       modalElem.style.opacity = 0;
 
       setTimeout(() => {
-        modalElem.style.visibility = 'hidden';
+        modalElem.style.visibility = "hidden";
         scrollController.enabledScroll();
       }, time);
 
-      window.removeEventListener('keydown', closeModal);
+      window.removeEventListener("keydown", closeModal);
     }
-  }
+  };
 
-  const openModal = event => {
+  const openModal = (event) => {
     event.preventDefault();
-    modalElem.style.visibility = 'visible';
+    modalElem.style.visibility = "visible";
     modalElem.style.opacity = 1;
-    window.addEventListener('keydown', closeModal);
+    window.addEventListener("keydown", closeModal);
     scrollController.disabledScroll();
   };
 
-  buttonElems.forEach(btn => {
-    btn.addEventListener('click', openModal);
+  buttonElems.forEach((btn) => {
+    btn.addEventListener("click", openModal);
   });
 
-  modalElem.addEventListener('click', closeModal);
+  modalElem.addEventListener("click", closeModal);
 };
 
 modalController({
-  modal: '.contact-popup',
-  btnOpen: '.menu__contact',
-  btnClose: '.contact-popup__close',
+  modal: ".contact-popup",
+  btnOpen: ".menu__contact",
+  btnClose: ".contact-popup__close",
 });
 
-
-// Animation 
+// Animation
 
 gsap.registerPlugin(ScrollTrigger);
 
 const tl = gsap.timeline();
 
-tl.fromTo(".menu__item", {
-  y: -50,
-  opacity: 0
-}, {
-  y: 0,
-  opacity: 1,
-  stagger: 0.15
-}, 0.6)
+tl.fromTo(
+  ".menu__item",
+  {
+    y: -50,
+    opacity: 0,
+  },
+  {
+    y: 0,
+    opacity: 1,
+    stagger: 0.15,
+  },
+  0.6
+)
 
-  .fromTo(".menu__contact",
+  .fromTo(
+    ".menu__contact",
     {
       y: -50,
-      opacity: 0
+      opacity: 0,
     },
     {
       y: 0,
       opacity: 1,
-    }, 1)
+    },
+    1
+  )
 
-  .fromTo(".burger",
+  .fromTo(
+    ".burger",
     {
       y: -50,
-      opacity: 0
+      opacity: 0,
     },
     {
       y: 0,
       opacity: 1,
-    }, 0.8)
+    },
+    0.8
+  )
 
-  .fromTo(".hero__title",
+  .fromTo(
+    ".hero__title",
     {
       x: -300,
-      opacity: 0
+      opacity: 0,
     },
     {
       x: 0,
-      opacity: 1
-    }, 0.4)
+      opacity: 1,
+    },
+    0.4
+  )
 
-  .fromTo(".hero__desc",
+  .fromTo(
+    ".hero__desc",
     {
       x: -300,
-      opacity: 0
+      opacity: 0,
     },
     {
       x: 0,
-      opacity: 1
-    }, 0.8)
+      opacity: 1,
+    },
+    0.8
+  )
 
-  .fromTo(".hero__buttons",
+  .fromTo(
+    ".hero__buttons",
     {
       x: -300,
-      opacity: 0
+      opacity: 0,
     },
     {
       x: 0,
-      opacity: 1
-    }, 1)
+      opacity: 1,
+    },
+    1
+  )
 
-  .fromTo(".hero__img",
+  .fromTo(
+    ".hero__img",
     {
       x: 300,
-      opacity: 0
+      opacity: 0,
     },
     {
       x: 0,
-      opacity: 1
-    }, 1)
+      opacity: 1,
+    },
+    1
+  )
 
-  .fromTo(".hero__holder",
+  .fromTo(
+    ".hero__holder",
     {
       scale: 0,
-      opacity: 0
+      opacity: 0,
     },
     {
       scale: 1,
-      opacity: 1
-    }, 1.6)
+      opacity: 1,
+    },
+    1.6
+  )
 
-  .fromTo(".hero__item", {
-    y: -50,
-    opacity: 0
-  }, {
-    y: 0,
-    opacity: 1,
-    stagger: 0.15
-  }, 1)
+  .fromTo(
+    ".hero__item",
+    {
+      y: -50,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      stagger: 0.15,
+    },
+    1
+  );
 
-
-gsap.from('.arts__top', {
+gsap.from(".arts__top", {
   scrollTrigger: {
-    trigger: '.arts',
-    start: 'top center',
+    trigger: ".arts",
+    start: "top center",
   },
   x: -300,
   opacity: 0,
-  duration: 0.6
+  duration: 0.6,
 });
 
-gsap.from('.arts__item', {
+gsap.from(".arts__item", {
   scrollTrigger: {
-    trigger: '.arts',
-    start: 'top center',
+    trigger: ".arts",
+    start: "top center",
   },
   opacity: 0,
   scale: 0,
   stagger: 0.3,
-  duration: 0.4
+  duration: 0.4,
 });
 
-gsap.from('.create__title, .create__text', {
+gsap.from(".create__title, .create__text", {
   scrollTrigger: {
-    trigger: '.create',
-    start: 'top center',
+    trigger: ".create",
+    start: "top center",
   },
   x: -300,
   opacity: 0,
-  duration: 1
+  duration: 1,
 });
 
-gsap.from('.create__btn.btn, .create__btn.more', {
+gsap.from(".create__btn.btn, .create__btn.more", {
   scrollTrigger: {
-    trigger: '.create',
-    start: 'top center',
+    trigger: ".create",
+    start: "top center",
   },
   scale: 0,
   opacity: 0,
-  duration: 1
+  duration: 1,
+});
+
+gsap.from(".create__images", {
+  scrollTrigger: {
+    trigger: ".create",
+    start: "top center",
+  },
+  x: -100,
+  opacity: 0,
+  duration: 1,
 });
 
 gsap.from(".popular__top", {
   scrollTrigger: {
-    trigger: '.popular',
-    start: 'top center',
+    trigger: ".popular",
+    start: "top center",
   },
   x: -300,
   opacity: 0,
-  duration: 0.6
-})
+  duration: 0.6,
+});
 
 gsap.from(".popular__item", {
   scrollTrigger: {
-    trigger: '.popular',
-    start: 'top center',
+    trigger: ".popular",
+    start: "top center",
   },
   scale: 0,
   stagger: 0.3,
   opacity: 0,
-  duration: 0.6
-})
+  duration: 0.6,
+});
 
-gsap.from('.subscribe__form', {
+gsap.from(".subscribe__title, .subscribe__text", {
   scrollTrigger: {
-    trigger: '.subscribe',
-    start: 'top center',
+    trigger: ".subscribe",
+    start: "top center",
+  },
+  x: -100,
+  opacity: 0,
+  duration: 1,
+});
+
+gsap.from(".subscribe__form", {
+  scrollTrigger: {
+    trigger: ".subscribe",
+    start: "top center",
   },
   scale: 0,
   opacity: 0,
-  duration: 1
+  duration: 1,
 });
 
 gsap.from(".subscribe__images", {
   scrollTrigger: {
-    trigger: '.subscribe',
-    start: 'top center',
+    trigger: ".subscribe",
+    start: "top center",
   },
   x: -100,
   opacity: 0,
-  duration: 1
-})
+  duration: 1,
+});
 
 gsap.from(".footer__text", {
   scrollTrigger: {
-    trigger: '.footer',
-    start: 'top 80%',
+    trigger: ".footer",
+    start: "top 80%",
   },
   x: -100,
   opacity: 0,
-  duration: 1
-})
+  duration: 1,
+});
 
 gsap.from(".footer__social-item", {
   scrollTrigger: {
-    trigger: '.footer',
-    start: 'top 80%',
+    trigger: ".footer",
+    start: "top 80%",
   },
   scale: 0,
   stagger: 0.15,
   opacity: 0,
-  duration: 1
-})
+  duration: 1,
+});
 
 gsap.from(".footer__item", {
   scrollTrigger: {
-    trigger: '.footer',
-    start: 'top 80%',
+    trigger: ".footer",
+    start: "top 80%",
   },
   scale: 0,
   stagger: 0.15,
   opacity: 0,
-  duration: 1
-})
+  duration: 1,
+});
 
 gsap.from(".footer__bottom", {
   scrollTrigger: {
-    trigger: '.footer',
-    start: 'top 80%',
+    trigger: ".footer",
+    start: "top 80%",
   },
   x: -50,
   opacity: 0,
-  duration: 1
-})
+  duration: 1,
+});
